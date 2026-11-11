@@ -4,7 +4,8 @@ Prepares a business profile for **ChatGPT Business Hub** (chatgpt.com/business-h
 OpenAI's dashboard for claiming or adding a business in ChatGPT. It gives you the
 two things the signup asks you to write:
 
-- **The category**, matched to the options Business Hub shows you.
+- **The category**, chosen from the full Business Hub category list (about 850
+  entries, included in the repo) and copied exactly as Business Hub spells it.
 - **The description**, the free-text information ChatGPT can share about the
   business, kept within the field's **300-character limit** (spaces and line
   breaks included; the field cuts off everything after that).
@@ -21,10 +22,11 @@ point. Facts only, no marketing words, no prices, no instructions aimed at ChatG
 
 | Folder | For | What it is |
 | --- | --- | --- |
-| [`claude/business-hub-profile/`](claude/business-hub-profile/SKILL.md) | Claude (Claude Code, Claude apps) | An Agent Skill (`SKILL.md`) |
-| [`chatgpt/`](chatgpt/instructions.md) | ChatGPT | Custom GPT setup and instructions |
+| [`claude/business-hub-profile/`](claude/business-hub-profile/SKILL.md) | Claude (Claude Code, Claude apps) | An Agent Skill (`SKILL.md`) plus `categories.txt` |
+| [`chatgpt/`](chatgpt/instructions.md) | ChatGPT | Custom GPT setup and instructions plus `categories.txt` |
 
-Both versions follow the same rules, word for word.
+Both versions follow the same rules, word for word, and carry the same
+`categories.txt` (one category per line, as listed in Business Hub in November 2026).
 
 ## Install
 
@@ -49,13 +51,14 @@ Settings > Capabilities > Skills.
 
 Open [chatgpt/instructions.md](chatgpt/instructions.md) and follow it: create a
 Custom GPT, paste the name, description, conversation starters and instructions,
-and turn web search on so it can read the business's website.
+upload `chatgpt/categories.txt` as a Knowledge file, and turn web search on so it
+can read the business's website.
 
 ## Example output
 
 ```text
 Interaction type: Through an online store (customers buy on the website).
-Category: Running shoe store. Fallbacks: Sporting goods store, Shoe store.
+Category: Shoe store. Fallbacks: Sporting goods store, Clothing store.
 
 Northfield Running Co. is a running shoe store in Leeds, United Kingdom, for road and trail runners. It sells running shoes, clothing and accessories from Brooks, Hoka, Saucony and On, and offers free gait analysis in store. Founded in 2012.
 

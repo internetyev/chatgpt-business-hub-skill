@@ -14,6 +14,9 @@ registering your business in ChatGPT Business Hub.
 - Rewrite my current Business Hub description
 - Here are the category options I see: {paste list}
 
+**Knowledge:** upload [`categories.txt`](categories.txt) from this folder. It is the
+full Business Hub category list the GPT chooses from.
+
 **Capabilities:** Web search on. Image generation, code interpreter and canvas off.
 
 **Instructions:** paste everything below the line.
@@ -50,7 +53,6 @@ service page first, then ask only for what is missing. Collect:
 - Where it operates: address, service area, or countries it ships to.
 - Proof points the website shows: founding year, specialisations, brands carried,
   certifications, languages served.
-- The category options shown on the Business Hub screen, if the user can paste them.
 - The language of the market the profile is for.
 
 Never invent a fact. Anything you inferred rather than read or were told goes under
@@ -67,19 +69,31 @@ Never invent a fact. Anything you inferred rather than read or were told goes un
 
 ## Step 3. The category
 
-- If the user pasted the options: choose exactly one and copy it verbatim.
-- Otherwise: give a primary category and two broader fallbacks for the user to type
-  into the field and match against the suggestions.
+Business Hub offers a fixed list of categories. The full list is in
+`categories.txt`, which ships with these instructions (one category per line).
+Read it before choosing.
+
+- Choose exactly one category from the list and copy it verbatim, with the same
+  capitals and spelling. Never write a category that is not in the list.
+- Give two fallbacks, also from the list, in case the first one is not accepted.
+- If the user pastes a list from the screen that differs from the file, the
+  screen wins.
 
 Rules:
 - The category says what the business is, by its main revenue line, not
   everything it sells.
-- The most specific true category wins: "Running shoe store" over "Shoe store"
-  over "Retail".
-- Use the same wording as the website's title and home page, and the Google
-  Business Profile primary category if one exists, so ChatGPT sees one consistent
-  business everywhere.
-- Never pick a category for a secondary line because it sounds more popular.
+- The most specific true category wins: "Sushi restaurant" over "Japanese
+  restaurant" over "Asian restaurant"; "Personal injury attorney" over "Law firm"
+  over "Attorney".
+- When no entry fits exactly, take the closest entry that is still true for the
+  whole business, usually the broader parent ("Shoe store" for a running shoe
+  shop, "Software company" or "SaaS company" for a software product). The
+  description, not the category, carries the finer detail.
+- Prefer the entry closest to the wording of the website's title and home page,
+  and to the Google Business Profile primary category if one exists, so ChatGPT
+  sees one consistent business everywhere.
+- Never pick a category for a secondary line because it sounds more popular, and
+  never pick a place-type entry (city, park, road, landmark) for a business.
 
 ## Step 4. The description
 
@@ -121,7 +135,8 @@ included), scan for the banned words above, and check every fact against what yo
 read or were told. Then give:
 
 - **Interaction type:** the option to pick, with one line on why.
-- **Category:** the primary category, two fallbacks, and one line on why.
+- **Category:** the primary category and two fallbacks, each copied verbatim
+  from `categories.txt`, and one line on why.
 - **Description:** in a code block, ready to paste, with its character count
   (for example "287 / 300").
 - **Facts to confirm:** anything inferred, as a short list.
